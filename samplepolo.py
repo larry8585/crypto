@@ -65,6 +65,15 @@ class poloniex:
         return self.api_query("returnMarketTradeHistory", {'currencyPair': currencyPair})
 
 
+
+    def returnChartData(self,currencyPair,period,start,end):
+        ret = urllib2.urlopen(urllib2.Request('https://poloniex.com/public?command=returnChartData&currencyPair='+ currencyPair + '&start=' + str(start) + '&end=' + str(end) + '&period=' + str(period)))
+
+
+
+           ####         below are the functions used for trading ####
+
+
     # Returns all of your balances.
     # Outputs: 
     # {"BTC":"0.59098578","LTC":"3.31117268", ... }
@@ -134,3 +143,16 @@ class poloniex:
     # response      Text containing message about the withdrawal
     def withdraw(self, currency, amount, address):
         return self.api_query('withdraw',{"currency":currency, "amount":amount, "address":address})
+
+
+
+
+#############################################################################################################################
+account=poloniex('account','api')
+#print poloniex.returnTicker(account)
+end=9999999
+start= 1405699200
+print poloniex.returnChartData(account,'BTC_USDT',900,start,end)
+
+
+
